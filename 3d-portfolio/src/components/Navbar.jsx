@@ -1,29 +1,84 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+import {
+  FaHome,
+  FaPaw,
+  FaUser,
+  FaCode,
+  FaFolderOpen,
+  FaEnvelope,
+  FaWhatsapp,
+} from "react-icons/fa";
+
+import { FiArrowUpRight, FiMenu, FiX } from "react-icons/fi";
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
   const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "PawGuardian", href: "#pawguardian" },
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Projects", href: "#projects" },
-    { name: "Contact", href: "#contact" },
+    {
+      name: "Home",
+      href: "#home",
+      icon: FaHome,
+    },
+    {
+      name: "PawGuardian India",
+      href: "#pawguardian",
+      icon: FaPaw,
+    },
+    {
+      name: "About",
+      href: "#about",
+      icon: FaUser,
+    },
+    {
+      name: "Skills",
+      href: "#skills",
+      icon: FaCode,
+    },
+    {
+      name: "Projects",
+      href: "#projects",
+      icon: FaFolderOpen,
+    },
+    {
+      name: "Contact",
+      href: "#contact",
+      icon: FaEnvelope,
+    },
   ];
 
   /* ================================
-     SCROLL EFFECT
+     SCROLL + ACTIVE SECTION
   ================================= */
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
+
+      const sections = navLinks
+        .map((link) => document.querySelector(link.href))
+        .filter(Boolean);
+
+      let current = "home";
+
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+
+        if (rect.top <= 160 && rect.bottom >= 160) {
+          current = section.id;
+        }
+      });
+
+      setActiveSection(current);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    handleScroll();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -34,169 +89,165 @@ const Navbar = () => {
      CLOSE MOBILE MENU
   ================================= */
 
-  const handleLinkClick = () => {
+  const handleLinkClick = (section) => {
+    setActiveSection(section.replace("#", ""));
     setIsOpen(false);
   };
 
   return (
-    <header className="fixed left-0 top-0 z-50 w-full px-3 pt-3 sm:px-6 sm:pt-4">
-
-      {/* ================================
-          NAVBAR
-      ================================= */}
-
+    <header className="fixed left-0 top-0 z-50 w-full px-3 pt-3 sm:px-5 sm:pt-4">
       <motion.nav
-        initial={{
-          opacity: 0,
-          y: -25,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{
-          duration: 0.6,
-          ease: "easeOut",
+          duration: 0.65,
+          ease: [0.22, 1, 0.36, 1],
         }}
         className={`
-          mx-auto max-w-7xl
+          relative mx-auto max-w-7xl
           overflow-hidden
-          rounded-2xl
+          rounded-[20px]
           border
           px-3 py-2.5
           transition-all duration-500
-          sm:px-5
+          sm:px-4 sm:py-3
           ${
             scrolled
-              ? "border-blue-200/70 bg-white/90 shadow-[0_15px_50px_rgba(37,99,235,0.12)] backdrop-blur-2xl"
-              : "border-slate-200/70 bg-white/75 shadow-lg shadow-slate-900/5 backdrop-blur-xl"
+              ? "border-blue-200/80 bg-white/95 shadow-[0_18px_55px_rgba(15,23,42,0.10)] backdrop-blur-2xl"
+              : "border-slate-200/80 bg-white/85 shadow-[0_12px_40px_rgba(15,23,42,0.07)] backdrop-blur-xl"
           }
         `}
         style={{
           transformStyle: "preserve-3d",
-          perspective: "1000px",
+          perspective: "1200px",
         }}
       >
-
         {/* ================================
-            NAVBAR LIGHT EFFECT
+            TOP SHINE
         ================================= */}
 
         <motion.div
           animate={{
-            x: ["-100%", "200%"],
+            x: ["-120%", "220%"],
           }}
           transition={{
-            duration: 5,
+            duration: 6,
             repeat: Infinity,
             ease: "linear",
           }}
-          className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/3 rotate-12 bg-gradient-to-r from-transparent via-white/50 to-transparent blur-xl"
+          className="pointer-events-none absolute inset-y-0 left-0 z-0 w-1/4 -skew-x-12 bg-gradient-to-r from-transparent via-white/70 to-transparent blur-xl"
         />
 
-        <div className="relative flex items-center justify-between">
+        {/* ================================
+            NAV CONTENT
+        ================================= */}
 
+        <div className="relative z-10 flex items-center justify-between">
           {/* ================================
               LOGO
           ================================= */}
 
           <a
-            href="#home"
-            onClick={handleLinkClick}
-            className="group relative flex items-center gap-2.5"
-          >
+  href="#home"
+  onClick={handleLinkClick}
+  className="group flex flex-col leading-none"
+>
+  <span className="text-lg font-black tracking-tight text-slate-900">
+    Hritik
+  </span>
 
-            {/* Logo 3D Container */}
-
-            <motion.div
-              whileHover={{
-                rotateY: 20,
-                rotateX: -10,
-                scale: 1.05,
-              }}
-              transition={{
-                type: "spring",
-                stiffness: 300,
-                damping: 15,
-              }}
-              className="relative"
-              style={{
-                transformStyle: "preserve-3d",
-              }}
-            >
-
-              {/* Glow */}
-
-              <div className="absolute inset-0 rounded-xl bg-blue-500/30 blur-lg" />
-
-              {/* Logo */}
-
-              <div className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-cyan-400 text-sm font-black text-white shadow-[0_8px_20px_rgba(37,99,235,0.3)]">
-
-                H
-
-                {/* Shine */}
-
-                <span className="absolute left-1 top-1 h-2 w-2 rounded-full bg-white/50 blur-[1px]" />
-              </div>
-
-            </motion.div>
-
-            {/* Brand */}
-
-            <div className="leading-none">
-              <span className="block text-lg font-black tracking-tight text-slate-900">
-                Hritik
-                <span className="text-blue-600">.</span>
-              </span>
-
-              <span className="mt-0.5 block text-[8px] font-bold uppercase tracking-[0.22em] text-slate-400">
-                Developer
-              </span>
-            </div>
-
-          </a>
-
+  <span className="mt-1 text-[8px] font-bold uppercase tracking-[0.25em] text-slate-400">
+    Developer
+  </span>
+</a>
           {/* ================================
               DESKTOP NAVIGATION
           ================================= */}
 
-          <div className="hidden items-center gap-1 md:flex">
+          <div className="hidden items-center gap-1 lg:flex">
+            {navLinks.map((link, index) => {
+              const Icon = link.icon;
+              const isActive = activeSection === link.href.replace("#", "");
 
-            {navLinks.map((link, index) => (
-              <motion.a
-                key={link.name}
-                href={link.href}
-                initial={{
-                  opacity: 0,
-                  y: -10,
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                transition={{
-                  delay: 0.1 + index * 0.05,
-                }}
-                whileHover={{
-                  y: -2,
-                }}
-                className="group relative rounded-xl px-3.5 py-2 text-[13px] font-semibold text-slate-600 transition-colors duration-300 hover:text-blue-600"
-              >
+              return (
+                <motion.a
+                  key={link.name}
+                  href={link.href}
+                  initial={{
+                    opacity: 0,
+                    y: -12,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  transition={{
+                    delay: 0.08 + index * 0.045,
+                    duration: 0.4,
+                  }}
+                  whileHover={{
+                    y: -2,
+                  }}
+                  onClick={() => handleLinkClick(link.href)}
+                  className={`
+                    group relative flex items-center gap-2
+                    rounded-xl px-3 py-2.5
+                    text-[12px] font-bold
+                    transition-all duration-300
+                    ${
+                      isActive
+                        ? "text-blue-600"
+                        : "text-slate-600 hover:text-blue-600"
+                    }
+                  `}
+                >
+                  {/* active / hover background */}
 
-                {/* Hover background */}
+                  <span
+                    className={`
+                      absolute inset-0 -z-10 rounded-xl
+                      transition-all duration-300
+                      ${
+                        isActive
+                          ? "scale-100 bg-blue-50 opacity-100"
+                          : "scale-90 bg-blue-50 opacity-0 group-hover:scale-100 group-hover:opacity-100"
+                      }
+                    `}
+                  />
 
-                <span className="absolute inset-0 -z-10 scale-75 rounded-xl bg-blue-50 opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100" />
+                  {/* icon */}
 
-                {link.name}
+                  <Icon
+                    className={`
+                      text-[12px] transition-transform duration-300
+                      ${
+                        isActive
+                          ? "text-blue-600"
+                          : "text-slate-400 group-hover:text-blue-600"
+                      }
+                    `}
+                  />
 
-                {/* Bottom indicator */}
+                  <span>{link.name}</span>
 
-                <span className="absolute bottom-1 left-1/2 h-[2px] w-0 -translate-x-1/2 rounded-full bg-blue-600 transition-all duration-300 group-hover:w-4/5" />
+                  {/* active indicator */}
 
-              </motion.a>
-            ))}
-
+                  <span
+                    className={`
+                      absolute bottom-[4px] left-1/2
+                      h-[2px] -translate-x-1/2
+                      rounded-full bg-blue-600
+                      transition-all duration-300
+                      ${
+                        isActive
+                          ? "w-6 opacity-100"
+                          : "w-0 opacity-0 group-hover:w-5 group-hover:opacity-100"
+                      }
+                    `}
+                  />
+                </motion.a>
+              );
+            })}
           </div>
 
           {/* ================================
@@ -205,101 +256,88 @@ const Navbar = () => {
 
           <motion.a
             href="https://wa.me/919528532241"
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{
-              y: -3,
-              scale: 1.03,
+              y: -2,
+              scale: 1.025,
             }}
             whileTap={{
-              scale: 0.97,
+              scale: 0.96,
             }}
-            className="relative hidden overflow-hidden rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 px-5 py-2.5 text-sm font-bold text-white shadow-[0_8px_25px_rgba(37,99,235,0.25)] md:block"
+            className="
+              group relative hidden items-center gap-2
+              overflow-hidden rounded-xl
+              bg-gradient-to-r from-blue-700 to-blue-500
+              px-4.5 py-2.5
+              text-[12px] font-extrabold text-white
+              shadow-[0_8px_25px_rgba(37,99,235,0.25)]
+              lg:flex
+            "
           >
-
-            {/* Shine */}
+            {/* shine */}
 
             <motion.span
               animate={{
-                x: ["-150%", "150%"],
+                x: ["-160%", "180%"],
               }}
               transition={{
                 duration: 2.5,
                 repeat: Infinity,
-                repeatDelay: 2,
+                repeatDelay: 2.5,
               }}
               className="absolute inset-y-0 left-0 w-1/3 skew-x-12 bg-gradient-to-r from-transparent via-white/30 to-transparent"
             />
 
-            <span className="relative z-10">
-              Let's Talk
-            </span>
+            <FaWhatsapp className="relative z-10 text-[15px]" />
 
+            <span className="relative z-10">Let's Talk</span>
+
+            <FiArrowUpRight className="relative z-10 text-[14px] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </motion.a>
 
           {/* ================================
-              MOBILE BUTTON
+              MOBILE MENU BUTTON
           ================================= */}
 
           <motion.button
             type="button"
-            onClick={() => setIsOpen(!isOpen)}
-            whileTap={{
-              scale: 0.9,
-            }}
-            aria-label="Toggle navigation menu"
+            onClick={() => setIsOpen((prev) => !prev)}
+            whileTap={{ scale: 0.9 }}
+            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={isOpen}
-            className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white/80 text-slate-800 shadow-sm backdrop-blur md:hidden"
+            className="
+              flex h-10 w-10 items-center justify-center
+              rounded-xl border border-slate-200
+              bg-white/80 text-slate-800
+              shadow-sm backdrop-blur
+              transition-colors
+              hover:border-blue-200 hover:bg-blue-50
+              lg:hidden
+            "
           >
-
-            <div className="relative h-5 w-5">
-
-              {/* Top */}
-
-              <motion.span
-                animate={
-                  isOpen
-                    ? {
-                        top: "9px",
-                        rotate: 45,
-                      }
-                    : {
-                        top: "3px",
-                        rotate: 0,
-                      }
-                }
-                className="absolute left-0 h-[2px] w-5 rounded-full bg-current"
-              />
-
-              {/* Middle */}
-
-              <motion.span
-                animate={{
-                  opacity: isOpen ? 0 : 1,
-                  scaleX: isOpen ? 0 : 1,
-                }}
-                className="absolute left-0 top-[9px] h-[2px] w-5 rounded-full bg-current"
-              />
-
-              {/* Bottom */}
-
-              <motion.span
-                animate={
-                  isOpen
-                    ? {
-                        top: "9px",
-                        rotate: -45,
-                      }
-                    : {
-                        top: "15px",
-                        rotate: 0,
-                      }
-                }
-                className="absolute left-0 h-[2px] w-5 rounded-full bg-current"
-              />
-
-            </div>
-
+            <AnimatePresence mode="wait" initial={false}>
+              {isOpen ? (
+                <motion.div
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                >
+                  <FiX className="text-[21px]" />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="menu"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                >
+                  <FiMenu className="text-[21px]" />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.button>
-
         </div>
 
         {/* ================================
@@ -322,67 +360,124 @@ const Navbar = () => {
                 height: 0,
               }}
               transition={{
-                duration: 0.3,
-                ease: "easeInOut",
+                duration: 0.35,
+                ease: [0.22, 1, 0.36, 1],
               }}
-              className="md:hidden"
+              className="lg:hidden"
             >
-
               <div className="mt-3 border-t border-slate-200/80 pt-3">
-
                 <div className="flex flex-col gap-1">
+                  {navLinks.map((link, index) => {
+                    const Icon = link.icon;
+                    const isActive =
+                      activeSection === link.href.replace("#", "");
 
-                  {navLinks.map((link, index) => (
-                    <motion.a
-                      key={link.name}
-                      href={link.href}
-                      onClick={handleLinkClick}
-                      initial={{
-                        opacity: 0,
-                        x: -15,
-                      }}
-                      animate={{
-                        opacity: 1,
-                        x: 0,
-                      }}
-                      transition={{
-                        delay: index * 0.04,
-                      }}
-                      whileTap={{
-                        scale: 0.98,
-                      }}
-                      className="group relative overflow-hidden rounded-xl px-4 py-3 text-sm font-semibold text-slate-700 transition-colors hover:bg-blue-50 hover:text-blue-600"
-                    >
+                    return (
+                      <motion.a
+                        key={link.name}
+                        href={link.href}
+                        onClick={() => handleLinkClick(link.href)}
+                        initial={{
+                          opacity: 0,
+                          x: -20,
+                        }}
+                        animate={{
+                          opacity: 1,
+                          x: 0,
+                        }}
+                        transition={{
+                          delay: index * 0.045,
+                          duration: 0.3,
+                        }}
+                        whileTap={{
+                          scale: 0.98,
+                        }}
+                        className={`
+                          group flex items-center gap-3
+                          rounded-xl px-4 py-3
+                          text-sm font-bold
+                          transition-all duration-300
+                          ${
+                            isActive
+                              ? "bg-blue-50 text-blue-600"
+                              : "text-slate-700 hover:bg-blue-50 hover:text-blue-600"
+                          }
+                        `}
+                      >
+                        {/* icon box */}
 
-                      <span className="relative z-10 flex items-center justify-between">
-                        {link.name}
-
-                        <span className="translate-x-2 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
-                          →
+                        <span
+                          className={`
+                            flex h-9 w-9 items-center justify-center
+                            rounded-lg transition-all duration-300
+                            ${
+                              isActive
+                                ? "bg-blue-600 text-white shadow-[0_5px_15px_rgba(37,99,235,0.25)]"
+                                : "bg-slate-100 text-slate-500 group-hover:bg-blue-100 group-hover:text-blue-600"
+                            }
+                          `}
+                        >
+                          <Icon className="text-[14px]" />
                         </span>
-                      </span>
 
-                    </motion.a>
-                  ))}
+                        <span className="flex-1">{link.name}</span>
 
+                        <FiArrowUpRight
+                          className={`
+                            text-[17px] transition-all duration-300
+                            ${
+                              isActive
+                                ? "translate-x-0 text-blue-600"
+                                : "translate-x-1 text-slate-300 group-hover:translate-x-0 group-hover:text-blue-600"
+                            }
+                          `}
+                        />
+                      </motion.a>
+                    );
+                  })}
                 </div>
 
- {/* Mobile CTA */}
-<motion.a
-  href="https://wa.me/919528532241"
-  target="_blank"
-  rel="noopener noreferrer"
-  whileTap={{ scale: 0.97 }}
-  className="mt-3 block rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 px-4 py-3 text-center text-sm font-bold text-white shadow-[0_8px_25px_rgba(37,99,235,0.2)]"
->
-  Let's Talk →
-</motion.a>
-              </div>
+                {/* ================================
+                    MOBILE WHATSAPP CTA
+                ================================= */}
 
+                <motion.a
+                  href="https://wa.me/919528532241"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{
+                    opacity: 0,
+                    y: 10,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  transition={{
+                    delay: 0.25,
+                  }}
+                  whileTap={{
+                    scale: 0.97,
+                  }}
+                  className="
+                    group mt-3 flex items-center justify-center gap-2
+                    rounded-xl
+                    bg-gradient-to-r from-blue-700 to-blue-500
+                    px-4 py-3.5
+                    text-sm font-extrabold text-white
+                    shadow-[0_10px_25px_rgba(37,99,235,0.22)]
+                  "
+                >
+                  <FaWhatsapp className="text-[17px]" />
+
+                  <span>Let's Talk on WhatsApp</span>
+
+                  <FiArrowUpRight className="text-[16px] transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </motion.a>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
-
       </motion.nav>
 
       {/* ================================
@@ -391,17 +486,23 @@ const Navbar = () => {
 
       <motion.div
         animate={{
-          y: [0, -5, 0],
-          rotate: [0, 5, 0],
+          y: [0, -6, 0],
+          opacity: [0.5, 1, 0.5],
         }}
         transition={{
-          duration: 4,
+          duration: 3.5,
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="pointer-events-none absolute -right-1 top-20 hidden h-2 w-2 rounded-full bg-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.6)] sm:block"
+        className="
+          pointer-events-none
+          absolute right-0 top-20
+          hidden h-2 w-2
+          rounded-full bg-blue-500
+          shadow-[0_0_18px_rgba(59,130,246,0.7)]
+          sm:block
+        "
       />
-
     </header>
   );
 };

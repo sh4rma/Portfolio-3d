@@ -1,6 +1,45 @@
 import { motion } from "framer-motion";
+import {
+  FiHeart,
+  FiMapPin,
+  FiShield,
+  FiActivity,
+  FiArrowRight,
+  FiExternalLink,
+} from "react-icons/fi";
 
 const PawGuardian = () => {
+  const features = [
+    {
+      title: "Rescue Reports",
+      description:
+        "Report injured animals and request rescue assistance quickly.",
+      icon: <FiShield />,
+      type: "blue",
+    },
+    {
+      title: "Location Assistance",
+      description:
+        "Help rescuers locate animals through accurate location data.",
+      icon: <FiMapPin />,
+      type: "yellow",
+    },
+    {
+      title: "Nearby Help",
+      description:
+        "Find nearby veterinary and animal-care resources when needed.",
+      icon: <FiActivity />,
+      type: "blue",
+    },
+    {
+      title: "Animal Care",
+      description:
+        "Connect people who want to help animals in need.",
+      icon: <FiHeart />,
+      type: "yellow",
+    },
+  ];
+
   return (
     <section
       id="pawguardian"
@@ -31,7 +70,6 @@ const PawGuardian = () => {
         />
 
         {/* Floating Blue Sphere */}
-
         <motion.div
           animate={{
             y: [0, -25, 0],
@@ -59,7 +97,6 @@ const PawGuardian = () => {
         />
 
         {/* Floating Yellow Cube */}
-
         <motion.div
           animate={{
             y: [0, 20, 0],
@@ -89,7 +126,6 @@ const PawGuardian = () => {
         />
 
         {/* Blue Dot */}
-
         <motion.div
           animate={{
             y: [0, -15, 0],
@@ -113,7 +149,6 @@ const PawGuardian = () => {
         />
 
         {/* Yellow Dot */}
-
         <motion.div
           animate={{
             y: [0, 15, 0],
@@ -154,7 +189,6 @@ const PawGuardian = () => {
           "
         >
 
-
           {/* =================================================
               PHONE AREA
           ================================================= */}
@@ -184,10 +218,7 @@ const PawGuardian = () => {
             "
           >
 
-
-            {/* =================================================
-                BLUE ORBIT — PHONE KE PEECHE
-            ================================================= */}
+            {/* BLUE ORBIT */}
 
             <motion.div
               animate={{
@@ -231,9 +262,7 @@ const PawGuardian = () => {
             </motion.div>
 
 
-            {/* =================================================
-                YELLOW 3D ORBIT — PHONE KE PEECHE
-            ================================================= */}
+            {/* YELLOW ORBIT */}
 
             <motion.div
               animate={{
@@ -277,9 +306,7 @@ const PawGuardian = () => {
             </motion.div>
 
 
-            {/* =================================================
-                FLOOR SHADOW
-            ================================================= */}
+            {/* FLOOR SHADOW */}
 
             <motion.div
               animate={{
@@ -364,7 +391,6 @@ const PawGuardian = () => {
               "
             >
 
-
               {/* Phone Depth */}
 
               <div
@@ -381,10 +407,7 @@ const PawGuardian = () => {
                 "
               />
 
-
-              {/* =================================================
-                  PHONE BODY
-              ================================================= */}
+              {/* PHONE BODY */}
 
               <div
                 className="
@@ -400,7 +423,6 @@ const PawGuardian = () => {
                   sm:p-[7px]
                 "
               >
-
 
                 {/* Left Buttons */}
 
@@ -432,8 +454,7 @@ const PawGuardian = () => {
                   "
                 />
 
-
-                {/* Right Power Button */}
+                {/* Power Button */}
 
                 <div
                   className="
@@ -450,9 +471,7 @@ const PawGuardian = () => {
                 />
 
 
-                {/* =================================================
-                    SCREEN
-                ================================================= */}
+                {/* SCREEN */}
 
                 <div
                   className="
@@ -465,7 +484,6 @@ const PawGuardian = () => {
                     sm:rounded-[32px]
                   "
                 >
-
 
                   {/* Status Bar */}
 
@@ -516,9 +534,7 @@ const PawGuardian = () => {
                   />
 
 
-                  {/* =================================================
-                      PAWGUARDIAN VIDEO
-                  ================================================= */}
+                  {/* VIDEO */}
 
                   <video
                     autoPlay
@@ -538,9 +554,7 @@ const PawGuardian = () => {
               </div>
 
 
-              {/* =================================================
-                  3D PHONE EDGE
-              ================================================= */}
+              {/* PHONE EDGE */}
 
               <div
                 className="
@@ -565,9 +579,7 @@ const PawGuardian = () => {
             </motion.div>
 
 
-            {/* =================================================
-                FLOATING LEFT CARD
-            ================================================= */}
+            {/* FLOATING LEFT CARD */}
 
             <motion.div
               animate={{
@@ -608,9 +620,7 @@ const PawGuardian = () => {
             </motion.div>
 
 
-            {/* =================================================
-                FLOATING RIGHT CARD
-            ================================================= */}
+            {/* FLOATING RIGHT CARD */}
 
             <motion.div
               animate={{
@@ -745,9 +755,18 @@ const PawGuardian = () => {
                 FOUNDER
             ================================================= */}
 
-            <div
+            <motion.div
+              whileHover={{
+                y: -3,
+              }}
+              transition={{
+                duration: 0.25,
+              }}
               className="
+                group
+                relative
                 mt-7
+                overflow-hidden
                 rounded-2xl
                 border
                 border-slate-200
@@ -759,7 +778,9 @@ const PawGuardian = () => {
               "
             >
 
-              <div className="flex items-center gap-4">
+              <div className="absolute right-0 top-0 h-20 w-20 rounded-full bg-blue-500/5 blur-2xl" />
+
+              <div className="relative flex items-center gap-4">
 
                 <div
                   className="
@@ -784,22 +805,20 @@ const PawGuardian = () => {
                 </div>
 
                 <div>
-
                   <p className="text-[10px] text-slate-400 sm:text-xs">
-                    Founder of PawGuardian India
+                    Founder & Developer
                   </p>
 
                   <p className="mt-1 text-base font-black sm:text-lg">
                     Hritik Sharma
                   </p>
-
                 </div>
 
               </div>
 
-
               <p
                 className="
+                  relative
                   mt-4
                   text-xs
                   leading-5
@@ -812,7 +831,7 @@ const PawGuardian = () => {
                 smarter and more connected ecosystem for animals in need.
               </p>
 
-            </div>
+            </motion.div>
 
 
             {/* =================================================
@@ -830,188 +849,76 @@ const PawGuardian = () => {
               "
             >
 
-              {/* Rescue */}
-
-              <div
-                className="
-                  group
-                  rounded-2xl
-                  border
-                  border-blue-100
-                  bg-blue-50/70
-                  p-4
-                  transition
-                  duration-300
-                  hover:-translate-y-1
-                  hover:bg-blue-50
-                "
-              >
-
-                <div
-                  className="
-                    flex
-                    h-10
-                    w-10
-                    items-center
-                    justify-center
-                    rounded-xl
-                    bg-blue-600
-                    text-lg
-                    text-white
-                    shadow-lg
-                    shadow-blue-600/20
-                  "
+              {features.map((feature, index) => (
+                <motion.div
+                  key={feature.title}
+                  initial={{
+                    opacity: 0,
+                    y: 20,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  viewport={{
+                    once: true,
+                  }}
+                  transition={{
+                    duration: 0.45,
+                    delay: index * 0.08,
+                  }}
+                  whileHover={{
+                    y: -5,
+                  }}
+                  className={`
+                    group
+                    rounded-2xl
+                    border
+                    p-4
+                    transition-all
+                    duration-300
+                    ${
+                      feature.type === "blue"
+                        ? "border-blue-100 bg-blue-50/70 hover:border-blue-200 hover:bg-blue-50"
+                        : "border-yellow-100 bg-yellow-50/70 hover:border-yellow-200 hover:bg-yellow-50"
+                    }
+                  `}
                 >
-                  🐾
-                </div>
 
-                <h3 className="mt-4 font-black">
-                  Rescue Reports
-                </h3>
+                  <div
+                    className={`
+                      flex
+                      h-10
+                      w-10
+                      items-center
+                      justify-center
+                      rounded-xl
+                      text-lg
+                      text-white
+                      shadow-lg
+                      transition-transform
+                      duration-300
+                      group-hover:scale-110
+                      ${
+                        feature.type === "blue"
+                          ? "bg-blue-600 shadow-blue-600/20"
+                          : "bg-yellow-400 shadow-yellow-400/20"
+                      }
+                    `}
+                  >
+                    {feature.icon}
+                  </div>
 
-                <p className="mt-1 text-xs leading-5 text-slate-500">
-                  Report injured animals and request rescue assistance.
-                </p>
+                  <h3 className="mt-4 font-black">
+                    {feature.title}
+                  </h3>
 
-              </div>
+                  <p className="mt-1 text-xs leading-5 text-slate-500">
+                    {feature.description}
+                  </p>
 
-
-              {/* Location */}
-
-              <div
-                className="
-                  group
-                  rounded-2xl
-                  border
-                  border-yellow-100
-                  bg-yellow-50/70
-                  p-4
-                  transition
-                  duration-300
-                  hover:-translate-y-1
-                  hover:bg-yellow-50
-                "
-              >
-
-                <div
-                  className="
-                    flex
-                    h-10
-                    w-10
-                    items-center
-                    justify-center
-                    rounded-xl
-                    bg-yellow-400
-                    text-lg
-                    text-white
-                    shadow-lg
-                    shadow-yellow-400/20
-                  "
-                >
-                  📍
-                </div>
-
-                <h3 className="mt-4 font-black">
-                  Location Assistance
-                </h3>
-
-                <p className="mt-1 text-xs leading-5 text-slate-500">
-                  Help rescuers locate animals through location data.
-                </p>
-
-              </div>
-
-
-              {/* Nearby */}
-
-              <div
-                className="
-                  group
-                  rounded-2xl
-                  border
-                  border-blue-100
-                  bg-blue-50/70
-                  p-4
-                  transition
-                  duration-300
-                  hover:-translate-y-1
-                  hover:bg-blue-50
-                "
-              >
-
-                <div
-                  className="
-                    flex
-                    h-10
-                    w-10
-                    items-center
-                    justify-center
-                    rounded-xl
-                    bg-blue-600
-                    text-lg
-                    text-white
-                    shadow-lg
-                    shadow-blue-600/20
-                  "
-                >
-                  🏥
-                </div>
-
-                <h3 className="mt-4 font-black">
-                  Nearby Help
-                </h3>
-
-                <p className="mt-1 text-xs leading-5 text-slate-500">
-                  Find nearby veterinary and animal-care resources.
-                </p>
-
-              </div>
-
-
-              {/* Care */}
-
-              <div
-                className="
-                  group
-                  rounded-2xl
-                  border
-                  border-yellow-100
-                  bg-yellow-50/70
-                  p-4
-                  transition
-                  duration-300
-                  hover:-translate-y-1
-                  hover:bg-yellow-50
-                "
-              >
-
-                <div
-                  className="
-                    flex
-                    h-10
-                    w-10
-                    items-center
-                    justify-center
-                    rounded-xl
-                    bg-yellow-400
-                    text-lg
-                    text-white
-                    shadow-lg
-                    shadow-yellow-400/20
-                  "
-                >
-                  ❤️
-                </div>
-
-                <h3 className="mt-4 font-black">
-                  Animal Care
-                </h3>
-
-                <p className="mt-1 text-xs leading-5 text-slate-500">
-                  Connecting people who want to help animals in need.
-                </p>
-
-              </div>
+                </motion.div>
+              ))}
 
             </div>
 
@@ -1031,8 +938,16 @@ const PawGuardian = () => {
               "
             >
 
-              <button
+              {/* MAIN PAGE BUTTON */}
+
+              <a
+                href="/pawguardian"
                 className="
+                  group
+                  inline-flex
+                  items-center
+                  justify-center
+                  gap-2
                   rounded-xl
                   bg-blue-600
                   px-6
@@ -1042,17 +957,34 @@ const PawGuardian = () => {
                   text-white
                   shadow-lg
                   shadow-blue-600/20
-                  transition
+                  transition-all
                   duration-300
                   hover:-translate-y-1
                   hover:bg-blue-700
+                  hover:shadow-blue-600/30
                 "
               >
-                Explore PawGuardian →
-              </button>
+                Explore PawGuardian India
 
-              <button
+                <FiArrowRight
+                  className="
+                    transition-transform
+                    duration-300
+                    group-hover:translate-x-1
+                  "
+                />
+              </a>
+
+
+              {/* MISSION BUTTON */}
+
+              <a
+                href="/pawguardian#mission"
                 className="
+                  inline-flex
+                  items-center
+                  justify-center
+                  gap-2
                   rounded-xl
                   border
                   border-slate-200
@@ -1062,7 +994,7 @@ const PawGuardian = () => {
                   text-sm
                   font-bold
                   text-slate-700
-                  transition
+                  transition-all
                   duration-300
                   hover:-translate-y-1
                   hover:border-blue-300
@@ -1070,7 +1002,8 @@ const PawGuardian = () => {
                 "
               >
                 View Mission
-              </button>
+                <FiExternalLink className="text-sm" />
+              </a>
 
             </div>
 

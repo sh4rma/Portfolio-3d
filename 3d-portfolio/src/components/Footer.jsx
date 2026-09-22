@@ -1,4 +1,10 @@
 import { motion } from "framer-motion";
+import {
+  FaGithub,
+  FaLinkedinIn,
+  FaInstagram,
+  FaPaw,
+} from "react-icons/fa";
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -15,17 +21,17 @@ const Footer = () => {
     {
       name: "GitHub",
       href: "https://github.com/sh4rma",
-      icon: "GH",
+      icon: <FaGithub />,
     },
     {
       name: "LinkedIn",
       href: "https://www.linkedin.com/in/hritik-sharma-114a9b291/",
-      icon: "in",
+      icon: <FaLinkedinIn />,
     },
     {
       name: "Instagram",
       href: "https://www.instagram.com/codewithhritik/",
-      icon: "IG",
+      icon: <FaInstagram />,
     },
   ];
 
@@ -50,7 +56,16 @@ const Footer = () => {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute -left-32 top-20 h-80 w-80 rounded-full bg-blue-600/20 blur-[120px]"
+          className="
+            absolute
+            -left-32
+            top-20
+            h-80
+            w-80
+            rounded-full
+            bg-blue-600/20
+            blur-[120px]
+          "
         />
 
         {/* Cyan Glow */}
@@ -65,7 +80,16 @@ const Footer = () => {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-cyan-500/15 blur-[130px]"
+          className="
+            absolute
+            -right-32
+            bottom-0
+            h-96
+            w-96
+            rounded-full
+            bg-cyan-500/15
+            blur-[130px]
+          "
         />
 
         {/* Grid */}
@@ -90,7 +114,18 @@ const Footer = () => {
             repeat: Infinity,
             ease: "linear",
           }}
-          className="absolute -right-32 top-20 h-72 w-72 rounded-full border-[18px] border-blue-500/10 sm:h-96 sm:w-96"
+          className="
+            absolute
+            -right-32
+            top-20
+            h-72
+            w-72
+            rounded-full
+            border-[18px]
+            border-blue-500/10
+            sm:h-96
+            sm:w-96
+          "
         />
 
         {/* Floating Cube */}
@@ -121,7 +156,15 @@ const Footer = () => {
           style={{
             transformStyle: "preserve-3d",
           }}
-          className="absolute left-[8%] top-[28%] hidden h-16 w-16 sm:block"
+          className="
+            absolute
+            left-[8%]
+            top-[28%]
+            hidden
+            h-16
+            w-16
+            sm:block
+          "
         >
           <div className="absolute inset-0 rotate-12 rounded-xl border border-blue-400/20 bg-blue-500/5" />
 
@@ -139,7 +182,16 @@ const Footer = () => {
             duration: 4,
             repeat: Infinity,
           }}
-          className="absolute left-[25%] top-[20%] h-2 w-2 rounded-full bg-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.8)]"
+          className="
+            absolute
+            left-[25%]
+            top-[20%]
+            h-2
+            w-2
+            rounded-full
+            bg-blue-400
+            shadow-[0_0_15px_rgba(59,130,246,0.8)]
+          "
         />
 
         <motion.span
@@ -151,64 +203,71 @@ const Footer = () => {
             duration: 5,
             repeat: Infinity,
           }}
-          className="absolute right-[25%] top-[45%] h-1.5 w-1.5 rounded-full bg-cyan-400"
+          className="
+            absolute
+            right-[25%]
+            top-[45%]
+            h-1.5
+            w-1.5
+            rounded-full
+            bg-cyan-400
+          "
         />
 
       </div>
 
+
       {/* =====================================================
-          TOP CTA
+          FOOTER CONTENT
       ====================================================== */}
 
       <div className="relative z-10 mx-auto max-w-7xl px-5 pt-20 sm:px-8 lg:px-12">
 
-       
-          {/* CTA Glow */}
-
-         
-
-    
-
-        {/* =====================================================
-            FOOTER CONTENT
-        ====================================================== */}
-
         <div className="grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-4">
 
-          {/* BRAND */}
+
+          {/* =================================================
+              BRAND
+          ================================================= */}
 
           <div className="lg:col-span-2">
 
+            {/* SIMPLE LOGO */}
+
             <a
               href="#home"
-              className="group inline-flex items-center gap-3"
+              className="group inline-flex flex-col leading-none"
             >
 
-              <motion.div
-                whileHover={{
-                  rotateY: 20,
-                  rotateX: -10,
-                }}
-                className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-cyan-400 text-base font-black shadow-lg shadow-blue-600/20"
-                style={{
-                  transformStyle: "preserve-3d",
-                }}
+              <span
+                className="
+                  text-2xl
+                  font-black
+                  tracking-tight
+                  text-white
+                  transition-colors
+                  duration-300
+                  group-hover:text-blue-400
+                "
               >
-                H
-              </motion.div>
+                Hritik
+              </span>
 
-              <div>
-                <div className="text-xl font-black">
-                  Hritik
-                  <span className="text-blue-500">.</span>
-                </div>
-
-                <div className="text-[8px] font-bold uppercase tracking-[0.25em] text-slate-500">
-                  Developer / Designer
-                </div>
-              </div>
+              <span
+                className="
+                  mt-1
+                  text-[9px]
+                  font-bold
+                  uppercase
+                  tracking-[0.28em]
+                  text-slate-500
+                "
+              >
+                Developer
+              </span>
 
             </a>
+
 
             <p className="mt-5 max-w-md text-sm leading-6 text-slate-400">
               Software developer and UI/UX designer focused on
@@ -216,7 +275,8 @@ const Footer = () => {
               experiences.
             </p>
 
-            {/* Social */}
+
+            {/* SOCIAL */}
 
             <div className="mt-6 flex items-center gap-2">
 
@@ -224,6 +284,8 @@ const Footer = () => {
                 <motion.a
                   key={social.name}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={social.name}
                   whileHover={{
                     y: -4,
@@ -232,7 +294,23 @@ const Footer = () => {
                   whileTap={{
                     scale: 0.95,
                   }}
-                  className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-[10px] font-black text-slate-400 transition-colors hover:border-blue-500/40 hover:bg-blue-500/10 hover:text-blue-400"
+                  className="
+                    flex
+                    h-10
+                    w-10
+                    items-center
+                    justify-center
+                    rounded-xl
+                    border
+                    border-white/10
+                    bg-white/[0.04]
+                    text-base
+                    text-slate-400
+                    transition-colors
+                    hover:border-blue-500/40
+                    hover:bg-blue-500/10
+                    hover:text-blue-400
+                  "
                 >
                   {social.icon}
                 </motion.a>
@@ -242,7 +320,10 @@ const Footer = () => {
 
           </div>
 
-          {/* NAVIGATION */}
+
+          {/* =================================================
+              NAVIGATION
+          ====================================================== */}
 
           <div>
 
@@ -256,9 +337,27 @@ const Footer = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="group flex items-center gap-2 text-sm text-slate-400 transition-colors hover:text-blue-400"
+                  className="
+                    group
+                    flex
+                    items-center
+                    gap-2
+                    text-sm
+                    text-slate-400
+                    transition-colors
+                    hover:text-blue-400
+                  "
                 >
-                  <span className="h-px w-0 bg-blue-500 transition-all duration-300 group-hover:w-3" />
+                  <span
+                    className="
+                      h-px
+                      w-0
+                      bg-blue-500
+                      transition-all
+                      duration-300
+                      group-hover:w-3
+                    "
+                  />
 
                   {link.name}
                 </a>
@@ -268,7 +367,10 @@ const Footer = () => {
 
           </div>
 
-          {/* FEATURED */}
+
+          {/* =================================================
+              FEATURED
+          ====================================================== */}
 
           <div>
 
@@ -285,29 +387,70 @@ const Footer = () => {
 
                 <div className="flex items-center gap-3">
 
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/10 text-lg">
-                    <img></img>
+                  {/* PAW ICON */}
+
+                  <div
+                    className="
+                      flex
+                      h-10
+                      w-10
+                      items-center
+                      justify-center
+                      rounded-xl
+                      bg-blue-500/10
+                      text-lg
+                      text-blue-400
+                      transition-all
+                      duration-300
+                      group-hover:bg-blue-500/20
+                      group-hover:text-blue-300
+                    "
+                  >
+                    <FaPaw />
                   </div>
 
+
                   <div>
-                    <div className="text-sm font-bold text-white transition-colors group-hover:text-blue-400">
+
+                    <div
+                      className="
+                        text-sm
+                        font-bold
+                        text-white
+                        transition-colors
+                        group-hover:text-blue-400
+                      "
+                    >
                       PawGuardian
                     </div>
 
                     <div className="mt-0.5 text-[10px] text-slate-500">
                       Animal Rescue Ecosystem
                     </div>
+
                   </div>
 
                 </div>
 
               </a>
 
+
               <a
                 href="#projects"
-                className="mt-5 inline-flex items-center text-xs font-bold text-blue-400 transition hover:text-blue-300"
+                className="
+                  group
+                  mt-5
+                  inline-flex
+                  items-center
+                  text-xs
+                  font-bold
+                  text-blue-400
+                  transition
+                  hover:text-blue-300
+                "
               >
                 View all projects
+
                 <span className="ml-1 transition-transform group-hover:translate-x-1">
                   →
                 </span>
@@ -319,31 +462,68 @@ const Footer = () => {
 
         </div>
 
+
         {/* =====================================================
             BOTTOM BAR
         ====================================================== */}
 
         <div className="border-t border-white/10 py-6">
 
-          <div className="flex flex-col items-center justify-between gap-3 text-center sm:flex-row sm:text-left">
+          <div
+            className="
+              flex
+              flex-col
+              items-center
+              justify-between
+              gap-3
+              text-center
+              sm:flex-row
+              sm:text-left
+            "
+          >
 
             <p className="text-[11px] text-slate-500">
               © {year} Hritik Sharma. All rights reserved.
             </p>
 
+
             <div className="flex items-center gap-4">
 
-              <span className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-slate-500">
-
+              <span
+                className="
+                  flex
+                  items-center
+                  gap-2
+                  text-[10px]
+                  font-semibold
+                  uppercase
+                  tracking-[0.15em]
+                  text-slate-500
+                "
+              >
                 <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
 
                 Available for opportunities
-
               </span>
+
 
               <a
                 href="#home"
-                className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 text-xs text-slate-400 transition hover:border-blue-500/30 hover:text-blue-400"
+                className="
+                  flex
+                  h-8
+                  w-8
+                  items-center
+                  justify-center
+                  rounded-lg
+                  border
+                  border-white/10
+                  text-xs
+                  text-slate-400
+                  transition
+                  hover:border-blue-500/30
+                  hover:text-blue-400
+                "
               >
                 ↑
               </a>
